@@ -18,8 +18,11 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
 import menjacnica.Valuta;
+import menjacnica.kontroler.GUIKontroler;
 
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 
@@ -39,18 +42,28 @@ public class DodajKursGUI extends JFrame {
 	private JTextField textFieldSkraceniNaziv;
 	private JButton btnDodaj;
 	private JButton btnOdus;
-
-	private MenjacnicaGUI glavniProzor;
 	private JSpinner spinnerSifra;
+	
+	
+	// private MenjacnicaGUI glavniProzor;
+	
 
 	/**
 	 * Create the frame.
 	 */
-	public DodajKursGUI(MenjacnicaGUI glavniProzor) {
+	public DodajKursGUI(/* MenjacnicaGUI glavniProzor */) {
+
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				GUIKontroler.zatvoriDodajKursGUI();
+			}
+		});
+
 		setIconImage(Toolkit.getDefaultToolkit().getImage(DodajKursGUI.class.getResource("/icons/Screenshot.png")));
 		setResizable(false);
 		setTitle("Dodaj kurs");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -72,7 +85,7 @@ public class DodajKursGUI extends JFrame {
 		contentPane.add(getBtnOdus());
 
 		// podesavanje
-		this.glavniProzor = glavniProzor;
+		// this.glavniProzor = glavniProzor;
 
 	}
 
@@ -92,7 +105,7 @@ public class DodajKursGUI extends JFrame {
 		return lblNaziv;
 	}
 
-	private JTextField getTextFieldNaziv() {
+	public JTextField getTextFieldNaziv() {
 		if (textFieldNaziv == null) {
 			textFieldNaziv = new JTextField();
 			textFieldNaziv.setColumns(10);
@@ -116,7 +129,7 @@ public class DodajKursGUI extends JFrame {
 		return lblKupovniKurs;
 	}
 
-	private JTextField getTextFieldProdajniKurs() {
+	public JTextField getTextFieldProdajniKurs() {
 		if (textFieldProdajniKurs == null) {
 			textFieldProdajniKurs = new JTextField();
 			textFieldProdajniKurs.setColumns(10);
@@ -124,7 +137,7 @@ public class DodajKursGUI extends JFrame {
 		return textFieldProdajniKurs;
 	}
 
-	private JTextField getTextFieldKupovniKurs() {
+	public JTextField getTextFieldKupovniKurs() {
 		if (textFieldKupovniKurs == null) {
 			textFieldKupovniKurs = new JTextField();
 			textFieldKupovniKurs.setColumns(10);
@@ -148,7 +161,7 @@ public class DodajKursGUI extends JFrame {
 		return lblSkraceniNaziv;
 	}
 
-	private JTextField getTextFieldSrednjiKurs() {
+	public JTextField getTextFieldSrednjiKurs() {
 		if (textFieldSrednjiKurs == null) {
 			textFieldSrednjiKurs = new JTextField();
 			textFieldSrednjiKurs.setColumns(10);
@@ -156,7 +169,7 @@ public class DodajKursGUI extends JFrame {
 		return textFieldSrednjiKurs;
 	}
 
-	private JTextField getTextFieldSkraceniNaziv() {
+	public JTextField getTextFieldSkraceniNaziv() {
 		if (textFieldSkraceniNaziv == null) {
 			textFieldSkraceniNaziv = new JTextField();
 			textFieldSkraceniNaziv.setColumns(10);
@@ -169,7 +182,8 @@ public class DodajKursGUI extends JFrame {
 			btnDodaj = new JButton("Dodaj");
 			btnDodaj.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					unesiKurs();
+					// unesiKurs();
+					GUIKontroler.unesiKurs();
 				}
 			});
 		}
@@ -181,14 +195,15 @@ public class DodajKursGUI extends JFrame {
 			btnOdus = new JButton("Odustani");
 			btnOdus.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					dispose();
+					// dispose();
+					GUIKontroler.zatvoriDodajKursGUI();
 				}
 			});
 		}
 		return btnOdus;
 	}
 
-	private JSpinner getSpinnerSifra() {
+	public JSpinner getSpinnerSifra() {
 		if (spinnerSifra == null) {
 			spinnerSifra = new JSpinner();
 			spinnerSifra.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
@@ -197,27 +212,30 @@ public class DodajKursGUI extends JFrame {
 	}
 
 	private void unesiKurs() {
-		try {
-			Valuta valuta = new Valuta();
-
-			// Punjenje podataka o valuti
-			valuta.setNaziv(textFieldNaziv.getText());
-			valuta.setSkraceniNaziv(textFieldSkraceniNaziv.getText());
-			valuta.setSifra((Integer) (spinnerSifra.getValue()));
-			valuta.setProdajni(Double.parseDouble(textFieldProdajniKurs.getText()));
-			valuta.setKupovni(Double.parseDouble(textFieldKupovniKurs.getText()));
-			valuta.setSrednji(Double.parseDouble(textFieldSrednjiKurs.getText()));
-
-			// Dodavanje valute u kursnu listu
-			glavniProzor.sistem.dodajValutu(valuta);
-
-			// Osvezavanje glavnog prozora
-			glavniProzor.prikaziSveValute();
-
-			// Zatvaranje DodajValutuGUI prozora
-			dispose();
-		} catch (Exception e1) {
-			JOptionPane.showMessageDialog(contentPane, e1.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
-		}
+		/*
+		 * DODATO U KONTROLER 
+		 * try { 
+		 * Valuta valuta = new Valuta();
+		 * 
+		 * // Punjenje podataka o valuti
+		 * valuta.setNaziv(textFieldNaziv.getText());
+		 * valuta.setSkraceniNaziv(textFieldSkraceniNaziv.getText());
+		 * valuta.setSifra((Integer) (spinnerSifra.getValue()));
+		 * valuta.setProdajni(Double.parseDouble(textFieldProdajniKurs.getText()
+		 * ));
+		 * valuta.setKupovni(Double.parseDouble(textFieldKupovniKurs.getText()))
+		 * ;
+		 * valuta.setSrednji(Double.parseDouble(textFieldSrednjiKurs.getText()))
+		 * ;
+		 * 
+		 * // Dodavanje valute u kursnu listu
+		 * glavniProzor.sistem.dodajValutu(valuta);
+		 * 
+		 * // Osvezavanje glavnog prozora glavniProzor.prikaziSveValute();
+		 * 
+		 * // Zatvaranje DodajValutuGUI prozora dispose(); } catch (Exception
+		 * e1) { JOptionPane.showMessageDialog(contentPane, e1.getMessage(),
+		 * "Greska", JOptionPane.ERROR_MESSAGE); }
+		 */
 	}
 }
