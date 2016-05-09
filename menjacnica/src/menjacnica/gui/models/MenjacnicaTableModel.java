@@ -7,11 +7,10 @@ import javax.swing.table.AbstractTableModel;
 
 import menjacnica.Valuta;
 
-
 public class MenjacnicaTableModel extends AbstractTableModel {
 
 	private final String[] kolone = new String[] { "Sifra", "Skr.naziv", "Naziv", "Kupovni", "Srednji", "Prodajni" };
-	private List<Valuta> valute = new LinkedList<Valuta> ();
+	private List<Valuta> valute = new LinkedList<Valuta>();
 
 	public MenjacnicaTableModel() {
 	}

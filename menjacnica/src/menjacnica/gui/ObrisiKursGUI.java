@@ -41,7 +41,7 @@ public class ObrisiKursGUI extends JFrame {
 	private JButton btnOdus;
 	private JCheckBox chckbxZaistaObrisiKurs;
 	private JLabel label;
-	
+
 	private MenjacnicaGUI glavniProzor;
 	private Valuta valuta;
 
@@ -74,11 +74,11 @@ public class ObrisiKursGUI extends JFrame {
 		contentPane.add(getLabel());
 		contentPane.add(getBtnDodaj());
 		contentPane.add(getBtnOdus());
-		
-		//podesavanje
+
+		// podesavanje
 		this.glavniProzor = glavniProzor;
 		this.valuta = valuta;
-		
+
 		prikaziValutu();
 	}
 
@@ -89,6 +89,7 @@ public class ObrisiKursGUI extends JFrame {
 		}
 		return lblSifra;
 	}
+
 	private JLabel getLblNaziv() {
 		if (lblNaziv == null) {
 			lblNaziv = new JLabel("Naziv");
@@ -96,6 +97,7 @@ public class ObrisiKursGUI extends JFrame {
 		}
 		return lblNaziv;
 	}
+
 	private JTextField getTextFieldSifra() {
 		if (textFieldSifra == null) {
 			textFieldSifra = new JTextField();
@@ -104,6 +106,7 @@ public class ObrisiKursGUI extends JFrame {
 		}
 		return textFieldSifra;
 	}
+
 	private JTextField getTextFieldNaziv() {
 		if (textFieldNaziv == null) {
 			textFieldNaziv = new JTextField();
@@ -112,6 +115,7 @@ public class ObrisiKursGUI extends JFrame {
 		}
 		return textFieldNaziv;
 	}
+
 	private JLabel getLblProdajniKurs() {
 		if (lblProdajniKurs == null) {
 			lblProdajniKurs = new JLabel("Prodajni kurs");
@@ -119,6 +123,7 @@ public class ObrisiKursGUI extends JFrame {
 		}
 		return lblProdajniKurs;
 	}
+
 	private JLabel getLblKupovniKurs() {
 		if (lblKupovniKurs == null) {
 			lblKupovniKurs = new JLabel("Kupovni kurs");
@@ -126,6 +131,7 @@ public class ObrisiKursGUI extends JFrame {
 		}
 		return lblKupovniKurs;
 	}
+
 	private JTextField getTextFieldProdajniKurs() {
 		if (textFieldProdajniKurs == null) {
 			textFieldProdajniKurs = new JTextField();
@@ -134,6 +140,7 @@ public class ObrisiKursGUI extends JFrame {
 		}
 		return textFieldProdajniKurs;
 	}
+
 	private JTextField getTextFieldKupovniKurs() {
 		if (textFieldKupovniKurs == null) {
 			textFieldKupovniKurs = new JTextField();
@@ -142,6 +149,7 @@ public class ObrisiKursGUI extends JFrame {
 		}
 		return textFieldKupovniKurs;
 	}
+
 	private JLabel getLblSrednjiKurs() {
 		if (lblSrednjiKurs == null) {
 			lblSrednjiKurs = new JLabel("Srednji kurs");
@@ -149,6 +157,7 @@ public class ObrisiKursGUI extends JFrame {
 		}
 		return lblSrednjiKurs;
 	}
+
 	private JLabel getLblSkraceniNaziv() {
 		if (lblSkraceniNaziv == null) {
 			lblSkraceniNaziv = new JLabel("Skraceni naziv");
@@ -156,6 +165,7 @@ public class ObrisiKursGUI extends JFrame {
 		}
 		return lblSkraceniNaziv;
 	}
+
 	private JTextField getTextFieldSrednjiKurs() {
 		if (textFieldSrednjiKurs == null) {
 			textFieldSrednjiKurs = new JTextField();
@@ -164,6 +174,7 @@ public class ObrisiKursGUI extends JFrame {
 		}
 		return textFieldSrednjiKurs;
 	}
+
 	private JTextField getTextFieldSkraceniNaziv() {
 		if (textFieldSkraceniNaziv == null) {
 			textFieldSkraceniNaziv = new JTextField();
@@ -172,6 +183,7 @@ public class ObrisiKursGUI extends JFrame {
 		}
 		return textFieldSkraceniNaziv;
 	}
+
 	private JButton getBtnDodaj() {
 		if (btnDodaj == null) {
 			btnDodaj = new JButton("Obrisi");
@@ -184,6 +196,7 @@ public class ObrisiKursGUI extends JFrame {
 		}
 		return btnDodaj;
 	}
+
 	private JButton getBtnOdus() {
 		if (btnOdus == null) {
 			btnOdus = new JButton("Odustani");
@@ -195,6 +208,7 @@ public class ObrisiKursGUI extends JFrame {
 		}
 		return btnOdus;
 	}
+
 	private JCheckBox getChckbxZaistaObrisiKurs() {
 		if (chckbxZaistaObrisiKurs == null) {
 			chckbxZaistaObrisiKurs = new JCheckBox("Zaista obrisi kurs");
@@ -209,32 +223,32 @@ public class ObrisiKursGUI extends JFrame {
 		}
 		return chckbxZaistaObrisiKurs;
 	}
+
 	private JLabel getLabel() {
 		if (label == null) {
 			label = new JLabel("");
 		}
 		return label;
 	}
-	
+
 	private void prikaziValutu() {
 		// Prikaz podataka o valuti
 		textFieldNaziv.setText(valuta.getNaziv());
 		textFieldSkraceniNaziv.setText(valuta.getSkraceniNaziv());
-		textFieldSifra.setText(""+valuta.getSifra());
-		textFieldProdajniKurs.setText(""+valuta.getProdajni());
-		textFieldKupovniKurs.setText(""+valuta.getKupovni());
-		textFieldSrednjiKurs.setText(""+valuta.getSrednji());				
+		textFieldSifra.setText("" + valuta.getSifra());
+		textFieldProdajniKurs.setText("" + valuta.getProdajni());
+		textFieldKupovniKurs.setText("" + valuta.getKupovni());
+		textFieldSrednjiKurs.setText("" + valuta.getSrednji());
 	}
 
 	private void obrisiValutu() {
-		try{
+		try {
 			glavniProzor.sistem.obrisiValutu(valuta);
-			
+
 			glavniProzor.prikaziSveValute();
 			dispose();
 		} catch (Exception e1) {
-			JOptionPane.showMessageDialog(contentPane, e1.getMessage(),
-					"Greska", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(contentPane, e1.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }
