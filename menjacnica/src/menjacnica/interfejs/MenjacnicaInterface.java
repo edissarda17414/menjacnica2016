@@ -1,6 +1,8 @@
-package menjacnica;
+package menjacnica.interfejs;
 
 import java.util.LinkedList;
+
+import menjacnica.Valuta;
 
 public interface MenjacnicaInterface {
 

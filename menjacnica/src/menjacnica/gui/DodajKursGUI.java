@@ -43,15 +43,11 @@ public class DodajKursGUI extends JFrame {
 	private JButton btnDodaj;
 	private JButton btnOdus;
 	private JSpinner spinnerSifra;
-	
-	
-	// private MenjacnicaGUI glavniProzor;
-	
 
 	/**
 	 * Create the frame.
 	 */
-	public DodajKursGUI(/* MenjacnicaGUI glavniProzor */) {
+	public DodajKursGUI() {
 
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -83,9 +79,6 @@ public class DodajKursGUI extends JFrame {
 		contentPane.add(getTextFieldSkraceniNaziv());
 		contentPane.add(getBtnDodaj());
 		contentPane.add(getBtnOdus());
-
-		// podesavanje
-		// this.glavniProzor = glavniProzor;
 
 	}
 
@@ -182,7 +175,6 @@ public class DodajKursGUI extends JFrame {
 			btnDodaj = new JButton("Dodaj");
 			btnDodaj.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					// unesiKurs();
 					GUIKontroler.unesiKurs();
 				}
 			});
@@ -195,7 +187,6 @@ public class DodajKursGUI extends JFrame {
 			btnOdus = new JButton("Odustani");
 			btnOdus.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					// dispose();
 					GUIKontroler.zatvoriDodajKursGUI();
 				}
 			});
@@ -211,31 +202,4 @@ public class DodajKursGUI extends JFrame {
 		return spinnerSifra;
 	}
 
-	private void unesiKurs() {
-		/*
-		 * DODATO U KONTROLER 
-		 * try { 
-		 * Valuta valuta = new Valuta();
-		 * 
-		 * // Punjenje podataka o valuti
-		 * valuta.setNaziv(textFieldNaziv.getText());
-		 * valuta.setSkraceniNaziv(textFieldSkraceniNaziv.getText());
-		 * valuta.setSifra((Integer) (spinnerSifra.getValue()));
-		 * valuta.setProdajni(Double.parseDouble(textFieldProdajniKurs.getText()
-		 * ));
-		 * valuta.setKupovni(Double.parseDouble(textFieldKupovniKurs.getText()))
-		 * ;
-		 * valuta.setSrednji(Double.parseDouble(textFieldSrednjiKurs.getText()))
-		 * ;
-		 * 
-		 * // Dodavanje valute u kursnu listu
-		 * glavniProzor.sistem.dodajValutu(valuta);
-		 * 
-		 * // Osvezavanje glavnog prozora glavniProzor.prikaziSveValute();
-		 * 
-		 * // Zatvaranje DodajValutuGUI prozora dispose(); } catch (Exception
-		 * e1) { JOptionPane.showMessageDialog(contentPane, e1.getMessage(),
-		 * "Greska", JOptionPane.ERROR_MESSAGE); }
-		 */
-	}
 }

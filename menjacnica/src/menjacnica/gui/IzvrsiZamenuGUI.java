@@ -54,24 +54,20 @@ public class IzvrsiZamenuGUI extends JFrame {
 	private JLabel lblKonacniIznos;
 	private JTextField textFieldKonacniIznos;
 
-	//private MenjacnicaGUI glavniProzor;
-	//private Valuta valuta;
-
 	/**
 	 * Create the frame.
 	 */
-	public IzvrsiZamenuGUI(/*MenjacnicaGUI glavniProzor, Valuta valuta*/) {
-		
+	public IzvrsiZamenuGUI() {
+
 		addWindowListener(new WindowAdapter() {
-			
+
 			@Override
 			public void windowClosing(WindowEvent e) {
 				GUIKontroler.zatvoriIzvrsiZamenuGUI();
 			}
-			
+
 		});
-		
-		
+
 		setIconImage(Toolkit.getDefaultToolkit().getImage(IzvrsiZamenuGUI.class.getResource("/icons/Screenshot.png")));
 		setTitle("Izvrsi zamenu");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -97,11 +93,6 @@ public class IzvrsiZamenuGUI extends JFrame {
 		contentPane.add(getLblKonacniIznos());
 		contentPane.add(getTextFieldKonacniIznos());
 
-		// podesavanje
-		//this.glavniProzor = glavniProzor;
-		//this.valuta = valuta;
-
-		prikaziValutu();
 	}
 
 	private JLabel getLblKupovni() {
@@ -189,7 +180,6 @@ public class IzvrsiZamenuGUI extends JFrame {
 			btnIzvrsiZamenu = new JButton("Izracunaj iznos");
 			btnIzvrsiZamenu.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					//izvrsiZamenu();
 					GUIKontroler.izvrsiZamenu(rdbtnProdaja.isSelected(), getTextFieldIznos().getText());
 				}
 			});
@@ -203,7 +193,6 @@ public class IzvrsiZamenuGUI extends JFrame {
 			btnOdustani = new JButton("Zatvori prozor");
 			btnOdustani.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					//dispose();
 					GUIKontroler.zatvoriIzvrsiZamenuGUI();
 				}
 			});
@@ -266,24 +255,4 @@ public class IzvrsiZamenuGUI extends JFrame {
 		return textFieldKonacniIznos;
 	}
 
-	private void prikaziValutu() {
-		/* DODATO U KONTROLER
-		textFieldProdajniKurs.setText("" + valuta.getProdajni());
-		textFieldKupovniKurs.setText("" + valuta.getKupovni());
-		textFieldValuta.setText(valuta.getSkraceniNaziv());
-		*/
-	}
-
-	private void izvrsiZamenu() {
-		/*  DODATO U KONTROLER
-		try {
-			double konacniIznos = glavniProzor.sistem.izvrsiTransakciju(valuta, rdbtnProdaja.isSelected(),
-					Double.parseDouble(textFieldIznos.getText()));
-
-			textFieldKonacniIznos.setText("" + konacniIznos);
-		} catch (Exception e1) {
-			JOptionPane.showMessageDialog(contentPane, e1.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
-		}
-		*/
-	}
 }

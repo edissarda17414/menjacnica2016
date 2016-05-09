@@ -45,13 +45,10 @@ public class ObrisiKursGUI extends JFrame {
 	private JCheckBox chckbxZaistaObrisiKurs;
 	private JLabel label;
 
-	//private MenjacnicaGUI glavniProzor;
-	//private Valuta valuta;
-
 	/**
 	 * Create the frame.
 	 */
-	public ObrisiKursGUI(/*MenjacnicaGUI glavniProzor, Valuta valuta*/) {
+	public ObrisiKursGUI() {
 
 		addWindowListener(new WindowAdapter() {
 
@@ -88,13 +85,7 @@ public class ObrisiKursGUI extends JFrame {
 		contentPane.add(getBtnDodaj());
 		contentPane.add(getBtnOdus());
 
-		// podesavanje
-		//this.glavniProzor = glavniProzor;
-		//this.valuta = valuta;
-
-		//prikaziValutu();
 	}
-
 
 	private JLabel getLblSifra() {
 		if (lblSifra == null) {
@@ -203,7 +194,6 @@ public class ObrisiKursGUI extends JFrame {
 			btnDodaj = new JButton("Obrisi");
 			btnDodaj.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					//obrisiValutu();
 					GUIKontroler.obrisiValutu();
 				}
 			});
@@ -217,7 +207,6 @@ public class ObrisiKursGUI extends JFrame {
 			btnOdus = new JButton("Odustani");
 			btnOdus.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					// dispose();
 					GUIKontroler.zatvoriObrisiKursGUI();
 				}
 			});
@@ -247,28 +236,4 @@ public class ObrisiKursGUI extends JFrame {
 		return label;
 	}
 
-	private void prikaziValutu() {
-		/* DODATO U KONTORLER
-		// Prikaz podataka o valuti
-		textFieldNaziv.setText(valuta.getNaziv());
-		textFieldSkraceniNaziv.setText(valuta.getSkraceniNaziv());
-		textFieldSifra.setText("" + valuta.getSifra());
-		textFieldProdajniKurs.setText("" + valuta.getProdajni());
-		textFieldKupovniKurs.setText("" + valuta.getKupovni());
-		textFieldSrednjiKurs.setText("" + valuta.getSrednji());
-		*/
-	}
-
-	private void obrisiValutu() {
-		/* DODATO U KONTROLER
-		try {
-			glavniProzor.sistem.obrisiValutu(valuta);
-
-			glavniProzor.prikaziSveValute();
-			dispose();
-		} catch (Exception e1) {
-			JOptionPane.showMessageDialog(contentPane, e1.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
-		}
-		*/
-	}
 }

@@ -8,6 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.LinkedList;
 
+import menjacnica.interfejs.MenjacnicaInterface;
 import menjacnica.sistemske_operacije.SODodajValutu;
 import menjacnica.sistemske_operacije.SOIzvrsiTransakciju;
 import menjacnica.sistemske_operacije.SOObrisiValutu;
